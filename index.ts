@@ -14,7 +14,7 @@ enum RawTile {
   KEY2, LOCK2
 }
 
-interface Tile2 {
+interface Tile {
   isAir(): Boolean;
   isLock1(): Boolean;
   isLock2(): Boolean;
@@ -24,7 +24,7 @@ interface Tile2 {
   update(x: number, y: number): void;
 }
 
-class Air implements Tile2 {
+class Air implements Tile {
   update(x: number, y: number) {
   }
   moveVertical(dy: number) {
@@ -46,7 +46,7 @@ class Air implements Tile2 {
   }
 }
 
-class Flux implements Tile2 {
+class Flux implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number) {
@@ -70,7 +70,7 @@ class Flux implements Tile2 {
   }
 }
 
-class Unbreakable implements Tile2 {
+class Unbreakable implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number): void {
@@ -92,7 +92,7 @@ class Unbreakable implements Tile2 {
   }
 }
 
-class Player implements Tile2 {
+class Player implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number): void {
@@ -112,7 +112,7 @@ class Player implements Tile2 {
   }
 }
 
-class Stone implements Tile2 {
+class Stone implements Tile {
   update(x: number, y: number): void {
     if (map[y + 1][x].isAir()) {
       map[y + 1][x] = new FallingStone();
@@ -142,7 +142,7 @@ class Stone implements Tile2 {
   }
 }
 
-class FallingStone implements Tile2 {
+class FallingStone implements Tile {
   update(x: number, y: number): void {
     if (map[y + 1][x].isAir()) {
       map[y + 1][x] = new FallingStone();
@@ -170,7 +170,7 @@ class FallingStone implements Tile2 {
   }
 }
 
-class Box implements Tile2 {
+class Box implements Tile {
   update(x: number, y: number): void {
     if (map[y + 1][x].isAir()) {
       map[y + 1][x] = new FallingBox();
@@ -200,7 +200,7 @@ class Box implements Tile2 {
   }
 }
 
-class FallingBox implements Tile2 {
+class FallingBox implements Tile {
   update(x: number, y: number): void {
     if (map[y + 1][x].isAir()) {
       map[y + 1][x] = new FallingBox();
@@ -228,7 +228,7 @@ class FallingBox implements Tile2 {
   }
 }
 
-class Key1 implements Tile2 {
+class Key1 implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number) {
@@ -254,7 +254,7 @@ class Key1 implements Tile2 {
   }
 }
 
-class Lock1 implements Tile2 {
+class Lock1 implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number): void {
@@ -276,7 +276,7 @@ class Lock1 implements Tile2 {
   }
 }
 
-class Key2 implements Tile2 {
+class Key2 implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number) {
@@ -302,7 +302,7 @@ class Key2 implements Tile2 {
   }
 }
 
-class Lock2 implements Tile2 {
+class Lock2 implements Tile {
   update(x: number, y: number): void {
   }
   moveVertical(dy: number): void {
@@ -362,7 +362,7 @@ let rawMap: RawTile[][] = [
   [2, 4, 1, 1, 1, 9, 0, 2],
   [2, 2, 2, 2, 2, 2, 2, 2],
 ];
-let map: Tile2[][];
+let map: Tile[][];
 
 function assertExhausted(x: never): never {
   throw new Error("Unexpected object: " + x);
